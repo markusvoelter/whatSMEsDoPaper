@@ -1,0 +1,142 @@
+
+\newpage{}
+\section{Closing Thoughts}
+
+
+% Here are some technical ones. Language modularity is key: it increases the
+% productivity of the language engineer and also improves quality because we can
+% reuse proven language implementations. The ability to combine multiple notations
+%---text, mathemtical symbols, tables and diagrams---is very important to create
+% languages that appeal to users. And bringing your languages to life by directly
+% running the models and allowing users to express tests is absolutely crucial.
+% 
+% \vspace{1mm}
+% \noindent \phantom{xxxxxxxxxxxxxxxxxxxxxxxxxxxx}\sim\phantom{!}\sim\phantom{!}\sim
+% \vspace{0.75mm}
+% 
+% \noindent As the examples with embedded software demonstrate, DSLs for engineers
+% are useful; there are lots of domain-specific abstractions in technical domains,
+% and leaving them with C, UML and SysML is not the solution. But the biggest lever
+% for DSLs is if you target it to domain experts and analysts, because this extends
+% the scope for unambiguous, checkable and executable artifacts to much earlier in the 
+% development flow. And a well defined DSL and IDE definitely has the potential
+% to achieve this.
+% 
+% \vspace{1mm}
+% \noindent \phantom{xxxxxxxxxxxxxxxxxxxxxxxxxxxx}\sim\phantom{!}\sim\phantom{!}\sim
+% \vspace{0.75mm}
+% 
+% \noindent In this paper I have only hinted at the effort necessary to develop
+% DSLs, and whether this effort pays off. There are several reasons for this. One
+% is that the effort obviously relative to the size and complexity of the
+% language, and that is hard to convey in two pages. Second, the effort also depends on
+% the learning effort and productivity of the developers, which varies widely.
+% Third, these business case is also something my customers don't want to talk
+% about publicly. But of course developing a DSL, especially one that can do more
+% than connect a couple of boxes with typed lines, is an investment. And any such
+% investment must be justified from a business perspective. How exactly you do
+% this depends very much specific context.
+%   
+% \vspace{1mm}
+% \noindent \phantom{xxxxxxxxxxxxxxxxxxxxxxxxxxxx}\sim\phantom{!}\sim\phantom{!}\sim
+% \vspace{0.75mm}
+% 
+% \noindent ``But Markus, this whole paper is completely biased. I don't believe
+% that you never ran into problems.'' True, this paper is biased, it documents the
+% successful cases in order to motivate you to consider the approach. And the
+% examples---plus the further reading---should give you ideas when and where to
+% use it successfully. But projects did fail. Very few of them failed for
+% technical reasons, because we weren't able to build a useful language or because
+% the domain asked too much of the DSL tool. A DSL for defining cooling algorithms
+% in refrigerators failed for this reason. But many more failed for other reasons:
+% people didn't want to buy into the tooling, the effort of integrating the DSL
+% with the rest of the IT infrastructure was too high, the DSL ``died'' after the
+% prototype because the people who built the prototype couldn't get the rest of
+% the organization to follow along, or for a variety of---something rather unobjective,
+% emotional or political reasons. And sometimes the effort for building the
+% language were higher than expected because we underestimated the size or complexity
+% of the domain or overestimated the productivity of the developers---normal
+% project problems, just like in any other domain. We have developed best practices
+% how to minimize these risks in projects, but they do exist.
+% 
+% \vspace{1mm}
+% \noindent \phantom{xxxxxxxxxxxxxxxxxxxxxxxxxxxx}\sim\phantom{!}\sim\phantom{!}\sim
+% \vspace{0.75mm}
+% 
+% \noindent One criticism is that a DSL-based approach just shuffles the complexity
+% around:
+% from the programs (those written manually when no DSL is used) into the language
+% implementation. So nothing's gained. This is obviously nonsense. It is of course
+% true that language implementations can be complicated. And there is potential
+% for errors. In the end, the complexity doesn't just evaporate. So much is true.
+% But it does of course make a huge difference how you handle the complexity. Any
+% generic, reusable artifact, from a simple function through libraries to
+% sophisticated frameworks and platforms exploit the idea of tackling a problem
+% and its associated complexity \emph{once} and then making solution available to
+% clients through some kind of API that shields clients from the complexity. 
+% In this sense, a DSL is just another kind of reusable artifact---one with
+% a syntax, type system and IDE---that embodies previously understood and factored
+% complexity. Let's close with a final look at complexity and the opportunity 
+% for saving effort by revisiting one of computer science's most well known five words:
+
+
+%\vspace{5mm}
+\large
+\noindent \phantom{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx} \emph{There is no silver bullet.}
+
+\vspace{0.5mm}
+\noindent \phantom{ixxxxxxxxxxxxxxxcxxxxxxxxxxxxxxxxxxxxxxxxxxxx} \small{Fred Brooks} 
+
+\normalsize{}
+\vspace{3mm}
+\noindent 
+
+\noindent In his 1986 article~\cite{Brooks87nosilver} \emph{No Silver Bullet: Essence and Accidents of Software Engineering} 
+Turing Award winner Fred Brooks argues that 
+
+\begin{quote}
+``\ldots there is no single development, in either technology or management technique, which by itself promises even one order of magnitude [tenfold] improvement within a decade in productivity, in reliability, in simplicity."
+\end{quote}
+
+\noindent He argues that modern, high-level programming languages have reduced
+the accidental complexity of a program so much, that more or less only the
+essential complexity is left. And essential complexity cannot be reduced. I
+think there are reasons to be skeptical about this statement. For one, there is
+still lots of accidental complexity in today's software systems. A key reason is
+that we don't just use one programming language, we use several of them in any
+given project, plus lots of frameworks and platforms.
+And second, the experience does show that a language that is high-level
+\emph{relative to a domain}, aka a DSL, can lead to similar productivity
+improvements \emph{in that domain} as a high-level general purpose language can
+bring over assembly language for programming in general.
+
+Why is this? It is a consequence of the power of first-class concepts. When you
+make something a language concept instead of something expressed via composition
+of lower level concepts (aka programming), you can treat it specifically: 
+a specific notation, specific analysis and error messages, specific IDE support,
+and specific translation. Of course this restricts flexibility. But you usually
+neither need nor want this flexibility in a DSL (except in places where you 
+explicitly allow it). This is what makes it domain-\emph{specific}.
+
+  
+None of this should come as a surprise! Computer science has always been about
+identifying the abstractions relevant for a class of problems and then finding
+ways of expressing these abstractions as clearly---as free from accidental
+complexity---as possible. Over the decades, our community has produced a vast
+range of languages that are specific to particular \emph{technical}
+domains---from database queries over UI styling to control algorithms---and
+there's no reason why this same approach should not work for a wider range of
+(smaller and narrower) domains. Our experience, as showcased in this paper, is
+testament to this.
+
+
+\vspace{5mm}
+\large
+\noindent \phantom{xxxxxxxxxxxxxxxxx} \emph{The purpose of abstraction is not to be vague,} \\ 
+\noindent \phantom{xxxxxxxxxxxxxxxxxxx} \emph{but to create a new semantic level} \\
+\noindent \phantom{xxxxxxxxxxxxxxxxxxxxx} \emph{in which one can be absolutely precise.}
+
+\vspace{0.5mm}
+\noindent \phantom{ixxxxxxxxxxxxxxxcxxxxxxxxxxxxxxxxxxxxxxxxxx} \small{Edsger Dijkstra} 
+
+
