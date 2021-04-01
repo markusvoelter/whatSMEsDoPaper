@@ -175,7 +175,7 @@ are then automatically transformed into program code. The \emph{software
 engineers} focus their activities on building these languages, tools and
 transformations, plus robust execution platforms for the generated code.
 
-\todo{Refer to Manifesto}
+\todo{Refer to Manifesto when it is done}
 
 \section{(Where) Does this work?}
 
@@ -192,29 +192,36 @@ for a reasonably long time. Finally, even though the subject matter as a whole
 is relevant for a long time, a degree of \textbf{evolution} or \textbf{variety}
 is usually needed. We have seen this approach used in the following domains, among others:
 
-\parhead{In insurances,} DSLs are used by insurance product definition staff to develop a
+\parhead{In insurances,} DSLs are used by insurance product definition~\cite{zurich} staff to develop a
 variety of ever evolving insurance products. With increased differentiation
 between products, these become more and more complicated while at the same time
 increasing in variety. The company itself is in the insurance business for the
-long run. \todo{Zürich MPS Buch: https://blogs.itemis.com/en/the-business-dsl-zurich-insurance}
+long run. [Reference to detailed case study coming once MPS book is published\todo{}]
 
 \parhead{In healthcare,} DSLs are used by doctors and other healthcare
 professionals to develop digital therapeutics algorithms. The company wants to
 grow over a decade and develop many of these algorithms. The subject matter is
 large and complicated because it captures medical expertise. Details about
-the French-American company Voluntis see \todo{}
+the French-American company Voluntis see \cite{voelter2019vol}.
 
 \parhead{In public adminstration,} as government agencies, they are certainly in
 it for the long run, while legislation for public benfits and tax calculation
 changes and evolves regularly. The agencies are full of experts who interpret
 and understand the law. On the other side, the service providers who develop
-software for tax advisors has the same challenges and uses DSLs as well \todo{}
+software for tax advisors has the same challenges and uses DSLs as well.
+[Reference to detailed case study coming once MPS book is published\todo{}]
 
-\parhead{In payroll, }
+\parhead{In payroll,} the applicable regulations that govern the  
+deducations from an employee's gross salary and the additional taxes and fees
+they have to pay are just as complicated, long-lasting and ever changing as tax
+law. Service provides who develop payroll software therefore also whole 
+departments full of experts and benefit from DSLs. 
+[Reference to detailed case study coming once MPS book is published\todo{}]
 
 \vspace{3mm}
 
-\noindent Overview see the Details see \todo{InfoQ}
+\noindent For an overview over this idea and a couple of easily readable 
+case studies, see my InfoQ article~\cite{infoq}.
 
 \section{Can SMEs do that?}
 
@@ -237,12 +244,16 @@ insight.
 
 \section{Difference between programming and SME'ing}
 
+
+
 \subsection{Skills and Responsibilities}
 
 \begin{figure}
 \begin{center}
     \includegraphics[width=1\columnwidth]{figures/table-respo.png}
-    \caption{}
+    \caption{Comparing programming (what software engineers do) from
+    whatever not-yet-named activity subject matter experts should do to 
+    directly contribute to software. Darker shade means ``is more relevant''.}
     \label{table-respo}
 \end{center} 
 \end{figure} 
@@ -322,7 +333,9 @@ understood without understanding the notion of values, and some notion of
 functions. It doesn't matther whether we're talking specifically about (textual)
 functions, (Excel-style) decision tables or (graphical) dataflow diagrams. The
 good thing is that essentially everybody has come across these at school or
-at university, so this is usually not a huge challenge.
+at university, so this is usually not a huge challenge. Another very fundamental
+concept that everybody should understand is the notion of mutable state
+as expressed by state transition systems (aka state charts or state machines).
 
 Similarly, the understanding of dot expression to mean ``the member X of entity
 Y'' or ``do Z with entity Y'' is very hard to avoid, because working with parts
@@ -384,17 +397,17 @@ do this are usually the gurus we talked about before, or they have been
 assimilated wholly but the software development team. But luckily it is
 quite rare that SMEs are required to define new abstractions, because those
 that are relevant should be available first-class in the DSL -- or retrofitted
-for the next version once the need becomes obvious. 
+for the next version once the need becomes obvious. Many of our DSLs are
+funclarative~\cite{voelter2018fusing} where small, simple calculations are done with a functional
+language (so users don't have to care about effects at this level) and 
+when things get more complicated, we add declarative first-class concepts
+to the language.
  
-
-\todo{state machines}
-\todo{funclerative}
-\todo{Code duplication}
-
 \begin{figure}
 \begin{center}
     \includegraphics[width=1\columnwidth]{figures/table-prefs.png}
-    \caption{}
+    \caption{SMEs make different trade-offs than software engineers 
+    regarding the languages and tools they want to work with.}
     \label{table-prefs}
 \end{center} 
 \end{figure} 
@@ -421,9 +434,11 @@ In my experience it is ok for them if they have to read a bit more documentation
 that (hopefully!) explains what the different options or alternatives mean.
 So DSLs often rely on first-class concepts for the various needs of the domain,
 even if this requires the users to first understand what these mean
-specifically. In contrast, programming languages emphasize orthogonality and
-flexibility of their first-class concepts. \todo{Talk abt benefits for
-notation and anaylses}.
+specifically. The approach is usually also benefitial for domain-related
+semantic analysis (more first class content makes it easier to analyze) and it's
+easier to have a good notation (because you can associate specific notations
+with these first-class concepts). In contrast, programming languages emphasize
+orthogonality and flexibility of their first-class concepts.
 
 \parhead{Guidance} A related topic is guidance. Developers are happy with
 opening an empty editor and starting to write code. Code completion guides
@@ -470,13 +485,78 @@ distinction between program and data: the program always runs (or, alternatively
 a spreadsheet never runs, it just ``is''). So anything from the universe of
 live programming is helpful.
 
+\vspace{3mm}
+\noindent Despite these differences, there are lots of commonalities as well.
+Both communities want good tools (read: IDE support), relevant analyses with
+understandable and precise error messages, refactorings and other ways to make
+non-local changes to (potentially large) programs, low turnaround time plus
+various ways of illustrating, tracing and debugging the execution of programs.  
+However, while software engineers are often willing to compromise on these
+features if the expressivity of the language is convincing, SMEs usually will 
+not.
 
-\section{Where and how to learn}
+\section{Where and how can SMEs learn}
 
-Comp think
-Felienne
-Mein Prog Basics stuff
+It is almost not worth saying because it is obvious: almost all domains,
+disciplines, professions and science are becoming computational to an 
+increasing degree. And market forces require companies -- especially those
+in the traditional industrial countries -- to become more efficient. I
+am confident that providing ``CAD programs for knowledge workers'', i.e.,
+DSL, tools and automation, is an important building block for success in
+this respect. 
 
+With the comparison of programming and ``that thing SMEs should do'' in this
+paper I hope to have made clear that not everybody has to become a programmer.
+But: everybody has to be empowered to communicate the subject matter of their
+domain precisely to a computer (using DSLs or other suitable tools). And
+therefore, everybody has to learn to think like a programmer at least a little
+bit, enough to be able to understand and work with the things in the SME column
+of \fig{table-respo}, while we software engineers have to adopt this
+subject-matter centric mindset and develop languages and tools that are built in
+line with the SME preferences in \fig{table-prefs}. 
+
+\noindent So where can SMEs learn this? 
+
+\parhead{In school and at university} Ideally
+everybody should learn these basics in school and at university. While
+programming in the strict sense should be specific to computer science or
+software engineering curricula, this ``SME'ing'' should be mandatory for
+everybody. Of course such courses shouldn't just teach Java or Python. They
+should emphasize the specific skills of ``thinking like a programmer'' with a
+range of dedicated a diverse languages and tools.
+
+\parhead{Programming Basics Course} A few years ago, based on the need to educate and
+trains some SMEs, I created a course called Programming Basics~\cite{voelterProgBas} that teaches
+these basics step by step. It starts with simple values as cells of spreadsheets
+and then covers expressions, testing, types, functions, structured values,
+collections, decisions and calculations and instantiation. The course uses
+different concrete forms and notations for many of these things to try and
+emphasize the conceptual aspects. It is built on MPS and KernelF, and allows
+extension and customization on language level towards particular DSLs. We are
+working on a way to get this into the browser.
+
+
+\parhead{Hedy Language} Felienne Hermans has built Hedy, a gradual programming 
+language. The goal is to teach ``normal people'' the basics of programming
+with a language that grows in capability step by step, with the need for
+each next capability motivated by user-understandable limitation in the
+previous step. Ultimately, the full stage of Hedy is Python. Hedy is free
+and works in the browser. 
+
+
+
+\parhead{Computational Thinking} During the 2000s, a community of software
+engineers came up with the term compuational thinking~\cite{denning2019computational} as the ``mental skills and
+practices for designing computations that get computers to do jobs for people,
+and explaining and interpreting the world as a complex of information
+processes.''
+So the idea is kinda similar to what I am advocating, although the relationship
+to DSLs is missing. Computational thinking has been critizied as being just
+another name for computer science; but my discussions in this paper should make
+clear that there's a big difference between computer science and that thing SMEs
+should do.
+
+\section{Wrap Up}
 
 
 
