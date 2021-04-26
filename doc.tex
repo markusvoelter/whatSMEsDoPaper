@@ -103,7 +103,8 @@ mathescape=false
 \newcommand{\sect}[1]{Sec. \ref{#1}}  % inline code
 
 
-\newcommand\todo[1]{\vspace{1mm}\noindent\textbf{\color{red} {{TODO: {#1}} }}}  
+%\newcommand\todo[1]{\vspace{1mm}\noindent\textbf{\color{red} {{TODO: {#1}} }}}
+\newcommand\todo[1]{}  
 
 
 \newmdenv[innerlinewidth=1pt, linecolor=black, innerleftmargin=3pt,
@@ -128,7 +129,15 @@ innerrightmargin=3pt,innertopmargin=3pt,innerbottommargin=3pt,backgroundcolor=li
 \email{voelter@acm.org}}
 \maketitle              % typeset the header of the contribution
 \begin{abstract}
-\todo{Abstract}
+Allowing subject matter experts to directly contribute their domain knowledge
+and expertise to software through DSLs and automation is a promising way to increase
+overall software development efficiency and the quality of the product. However,
+there are doubts of whether this will force subject matter experts to become
+programmers. In this paper I answer this question with ``no''. But at the same
+time, subject matter experts have to learn how to communicate clearly and 
+unambiguously to a computer, and this requires \emph{some} aspects of what
+is traditionally called programming. The main part of this paper discusses
+what these aspects are and why learning these does not make people programmers. 
 \keywords{Domain Specific Language  \and End-user Programming \and Language Engineering.}
 \end{abstract}
 %
@@ -163,44 +172,45 @@ innerrightmargin=3pt,innertopmargin=3pt,innerbottommargin=3pt,backgroundcolor=li
 Subject matter experts, or SMEs, own the knowledge and expertise that is the
 backbone of software and the foundation of digitalization. But too often this
 rich expertise is not captured in a structured way and gets lost when
-translating it for software developers (SDs) for implementation. With the rate
-of change increasing, time-to-market shortening and product variability
+translating it for software developers (SDs) when they implement it. With the
+rate of change increasing, time-to-market shortening and product variability
 blooming, this indirect approach of putting knowledge into software is
-increasingly untenable. It causes delays, quality problems and frustration for
-everybody involved. A better approach is to empower \emph{subject matter
-experts} to capture, understand, reason about data, structures, rules, behaviors
-and other forms of knowledge and expertise in a precise and unambiguous form by
-providing them with tailored software languages (DSLs) and tools that allow them
-to directly edit, validate, simulate and test that knowledge. The models created
-this way are then automatically transformed into program code. The
-\emph{software engineers} focus their activities on building these languages,
-tools and transformations, plus robust execution platforms for the generated
-code. \fig{bigpic} shows the overall process.
+increasingly untenable: it causes delays, quality problems and frustration for
+everyone involved. A better approach is to \emph{empower} subject matter experts
+to capture, understand, and reason about data, structures, rules, behaviors and
+other forms of knowledge and expertise in a precise and unambiguous form by
+providing them with \emph{tailored software languages} (DSLs) and tools that
+allow them to directly edit, validate, simulate and test that knowledge. The
+models created this way are then automatically transformed into program code.
+The software engineers focus their activities on building these
+languages, tools and transformations, plus robust execution platforms for the
+generated code. \fig{bigpic} shows the overall process.
 
 \section{Can SMEs use DSLs?}
 
 This paper is not about justifying the approach from a technical or economical
-perspective. Instead I want to focus on whether the SMEs are able to change from
-their typically imprecise, non-formal approrach of specifying requirements using
-Word, Excel, User Stories or IBM Doors to this DSL-based approach. 
+perspective. Instead I want to focus on whether the SMEs are \emph{able} to
+change from their typically imprecise, non-formal approrach of specifying
+requirements using Word, Excel, User Stories or IBM Doors to this DSL-based
+approach.
 
-Based on the experiences mentioned above, plus a few more, the
+Based on my experience over the years~\cite{infoq} my
 answer to this question is a clear yes, at least for the majority
 of subject matter experts I have worked with. But a key question is: to what
-extent do the subject matter experts who use our DSLs and tools have to become
+extent do the subject matter experts who use DSLs have to become
 programmers? Do they have the \emph{skills} to be programmers (hint: most
-don't). Do they \emph{want} to become programmers (hint: most don't). But I
+don't), and do they \emph{want} to become programmers (hint: most don't). But we
 still expect them to use ``languages'' and IDE-like tools. So:
 
 \vspace{2mm}
-\noindent \textbf{Which parts of what we call programming do they have to learn?
+\noindent \textbf{Which parts of programming do they have to learn?
 How is SME'ing different from programming, and where does it overlap?}
 \vspace{2mm}
 
-\noindent I
-answer this question in \sect{canTheyDoIt}. To set the state we briefly 
-discuss the domains in which the approach works (\sect{where}) and how
-languages and applications are typically architected in such scenarios (\sect{langarch}).
+\noindent I answer this question in \sect{canTheyDoIt}. To set the state we
+briefly discuss the domains in which the approach works (\sect{where}) and how
+languages and applications are typically architected in such scenarios
+(\sect{langarch}).
 We conclude the paper with a wrap up in \sect{wrapUp}.
 
 \begin{figure}
@@ -218,11 +228,11 @@ We conclude the paper with a wrap up in \sect{wrapUp}.
 \label{where}
 
 Building the necessary tooling and automation requires investment, and this
-investment must pay off for it to make economical sense. This is why this
+investment must pay off to make economical sense. Which is why this
 approach only works in domains that have the following characteristics. First,
-the subject matter that goes into the software has to have a minimum
+the subject matter has to have a minimum
 \textbf{size} and \textbf{complicatedness}. Often this means that there are
-people in the company who consider themselves the \textbf{experts} in that
+people in the company who consider themselves \textbf{experts} in that
 subject matter. It is they who everybody asks about details in the domain.
 The second criterion is that this subject matter as a whole will remain
 \textbf{relevant over time} and that the business intends to continue developing
@@ -232,33 +242,37 @@ subject matter as a whole is relevant for a long time, a degree of
 the approach to make sense. I have seen this approach used in the following
 domains, among others:
 
-\parhead{In insurances,} DSLs are used by insurance product definition staff to develop a
-variety of ever evolving insurance products~\cite{zurich}. With increased differentiation and
-tailoring of products, these become more and more complicated while at the same time
-increasing in variety and number. The company itself is in the insurance business for the
-long run. [Reference to detailed case study coming once MPS book is published\todo{}]
+\parhead{In insurances,} DSLs are used by insurance product definition staff to
+develop a variety of continuously evolving insurance products~\cite{zurich}.
+With increased differentiation and tailoring of products, these become more and
+more complicated while at the same time increasing in variety and number. The
+company itself is in the insurance business for the long run. 
+
+\todo{Reference to
+detailed case study coming once MPS book is published}
 
 \parhead{In healthcare,} DSLs are used by doctors and other healthcare
-professionals to develop treatment and diagnostics algorithms inside digital
-therapeutics apps. The company intends to grow over years and develop a large
-number of these algorithms and apps. The subject matter is large and complicated
-because it captures medical expertise. Details about the French-American company
-Voluntis see \cite{voelter2019vol}.
+professionals to develop treatment and diagnostics algorithms that for the core
+of digital therapeutics apps~\cite{voelter2019vol}. My customer, Voluntis, 
+intends to grow over years
+and develop a large number of these algorithms and apps. The subject matter is
+large and complicated because it captures medical expertise. 
 
 \parhead{In public adminstration,} government agencies are certainly in it for
 the long run, while legislation for public benefits and tax calculation changes
-and evolves regularly. The agencies are full of experts who disambiguates and
-formalizes the law that is written by the government and its interpretations by
-courts using DSLs~\cite{dta}. Similarly, the service providers who
-develop software for tax advisors has the same challenges and uses DSLs as well.
-[Reference to detailed case study coming once MPS book is published\todo{}]
+and evolves regularly. The agencies are full of experts who use DSLs~\cite{dta} 
+to disambiguate and
+formalize the law and its interpretations by
+courts. Similarly, the service providers who
+develop software for tax advisors has the same challenges and uses DSLs as well~\cite{datevsteuervideo,datevsteuerslides}.
 
-\parhead{In payroll,} the applicable regulations that govern the  
-deducations from an employee's gross salary and the additional taxes and fees
-they have to pay are just as complicated, long-lasting and ever changing as tax
-law. Service provides who develop payroll software therefore also employ whole 
-departments full of experts and benefit from DSLs. 
-[Reference to detailed case study coming once MPS book is published\todo{}]
+
+\parhead{In payroll,} the regulations that govern the deducations from an
+employee's gross salary and the additional taxes and fees they have to pay are
+just as complicated, long-lasting and ever changing as tax law (and of course
+directly related). Service provides who develop payroll software therefore also
+employ whole departments full of experts and benefit from the use of DSLs.
+\todo{Reference to detailed case study coming once MPS book is published}
 
 \vspace{3mm}
 
@@ -275,21 +289,22 @@ Many of the DSL I have built follow the general approach that is outlined in
 usually expressed with functional semantics, either via generation or via
 interpretation. That core implements a (manually defined) API that is used by a
 driver component to invoke the DSL-derived code. The driver interacts with
-users, and other systems -- potentially via additional architectural building
+users and other systems -- potentially via additional architectural building
 blocks -- and is often also responsible for managing and persisting state.
 Indeed, many of our DSLs are funclarative~\cite{voelter2018fusing} where small,
-simple calculations are done with a functional-style language (so users don't
-have to care about effects at this level) and when things get more complicated,
-I add declarative first-class concepts to the language.
+simple calculations are expressed with a functional-style language (so users don't
+have to care about effects at this level), and when things get more complicated,
+the DSL provides declarative first-class concepts to express those concisely
+without lots of low-level functional code.
 
 In order to avoid reinventing the wheel with regards to the core functional
-expressions, I embed, and then extend a reusable language
+expressions, the DSLs often embed (and then extend) a reusable language
 KernelF~\cite{volter2018design}.
 
-If the DSL cannot be scoped to handling only the functional parts, I usually
-rely on forms of state machines. Generally it is a good idea to rely on
-established programming paradigms and DSL-ify them instead of inventing new
-fundamental paradigms.
+If the DSL cannot be scoped to handling only the functional parts and thus has
+to manage state, I usually rely on variations of state machines. Generally it is
+a good idea to rely on established programming paradigms and DSL-ify them
+instead of trying to invent new fundamental paradigms.
 
 
 
@@ -329,15 +344,15 @@ concern. Let's start our discussion with the two black and white cases, those
 where there is no overlap.
 
 
-\parhead{Region 1, SME only} We start with region 1, which is completely the
+\parhead{Region 1, SME only} We begin with region 1, which is completely the
 responsibility of SMEs. They have to understand every particular example, case,
-situation, and exception of the subject matter they are describing with the DSL.
+situation, and exception of the subject matter they want to describe with the DSL.
 This is their natural responsibility, this is why they exist. SDs on the other
-side should not have to care at all. Achieving this separation -- and then
+hand should not have to care at all. Achieving this separation -- and then
 optimizing the tasks of both communities -- is the reason for using DSLs and
 tools in the first place. Related to this, the SMEs are also in charge of
-determining what consistutes correct behavior in the subject matter.
-SMEs take responsibility for what should go into test cases and for their
+determining what consistutes correct behavior in the subject matter:
+SMEs take responsibility for what should go into test cases as well as for their
 completeness.
 
 \parhead{Region 2, SE only} Let's move on to region 2, which is completely the
@@ -358,7 +373,7 @@ the domain of SDs.
 Finally, the development of the DSLs and tools that will then be used by the
 SMEs for capturing, analysing and experimenting with subject matter is the
 responsibility of SDs. It might not be the domain of \emph{all} of the software
-engineers, but maybe that of a certain specialization called language engineers
+engineers, but maybe only of a certain specialization called language engineers
 who specialize in developing languages, IDEs, interpreters and generators. Also,
 a very few of the subject matter experts -- I sometimes refer to them as gurus
 -- have to help survey, understand, analyse and abstract the domain so that the
@@ -367,19 +382,19 @@ hundreds that many of our customers employ, are not involved with this task.
 
 \parhead{Region 3, Testing} Let's now look at region 3, one that apparently has
 full shared responsibility. However, this is a bit misleading. Indeed, both
-communities have to understand the purpose of testing and what a test case is,
+communities have to understand the purpose of testing, what a test case is,
 and appreciate the notion of coverage, i.e., understanding when they have enough
 tests to be (reasonably) sure that there are no more (reasonably few) bugs in
 the logic. But of course the SMEs care about this \emph{only} for subject matter
-as expressed with the DSL, whereas the SDs care about it only in the platform,
+as expressed with the DSL, whereas the SDs care about it \emph{only} in the platform,
 frameworks, language implementation and generators. So they both have to
-understand the concept of testing, but there are no artifacts for which they
+understand testing, but there are no artifacts for which they
 have shared responsibility.
 
-\parhead{Region 4, shared skills} This is the most interesting
-part: everything in this region is native to programming and software
-engineering. So SDs care. But they are also relevant, to different degrees, to
-SMES when they use DSLs. Let's explore them in detail.
+\parhead{Region 4, shared skills} This is the most interesting part: all the items
+in this region are native to programming and software engineering. So SDs care.
+But they are also relevant, to different degrees, to SMES when they use DSLs.
+Let's explore them in detail.
 
 Of course the SMEs have to understand the conceptual abstractions of the domain,
 because otherwise they cannot use the language.
@@ -388,17 +403,18 @@ abstractions are closely aligned with the subject matter, the SMEs -- in my
 experience -- are able to understand it. Maybe not every little detail (which is
 why the box is dark grey and not black) but sufficiently well to use the
 language. The SDs have to understand these abstractions as well, especially the
-language engieneers. Those who build the execution platform can probably deal
+language engieneers. Those who build the execution platform can usually deal
 with a black-box view of the generated code.
 
 A note: the fact that there is shared understanding about the core abstractions
-of the subject matter in which the SMEs and the SDs co-create software is a major
-reason why DSLs are so useful here. The language definition, and its conceptual
-cousins, the core abstractions, are a great unambiguous and clearly-scoped
-foundation for productive collaboration between the two communities. So when
-I write ``xyz is the responsibility of SME/SD'', it doesn't mean that there is 
-not a \emph{joint overall responsibility} of both communities together to deliver
-useful (subject matter) and robust (-ilities) software. 
+of the subject matter in the domain for which the SMEs and the SDs co-create
+software is a major reason why DSLs are so useful here. The language definition,
+and its conceptual cousins, the core abstractions, are an unambiguous and
+clearly-scoped foundation for productive collaboration between the two
+communities. So when I write ``xyz is the responsibility of SME/SD'', it doesn't
+mean that there is not a \emph{joint overall responsibility} of both communities
+together to deliver useful (in terms of subject matter) and robust (in terms of
+operational concerns) software.
 
 Back to region 4. No real-world subject-matter focused DSL I have ever seen can
 make do without understanding the notion of values, and some notion of functions
@@ -407,27 +423,28 @@ talking specifically about (textual) functions, (Excel-style) decision tables or
 (graphical) dataflow diagrams. The good thing is that essentially everybody has
 come across these at school or at university, even
 though using functions to assemble larger functionality from pieces and the explicit
-use of types is new. In practice, teaching the use of functions, at least
+use of types is new to many. In practice, teaching the use of functions, at least
 in limited complexity situations, is feasible. 
 
 Similarly, the understanding of dot expressions to mean \ic{the member X of
 entity Y} or \ic{do Z with entity Y} is very hard to avoid, because working with
-parts of things or performing activities on things is almost unavoidable. For
-many SMEs, this is harder to get used to. We've experimented with literally
-writing \ic{<member> of <object>} instead of \ic{<object>.<member>} but this 
-leads to less useful IDE support: with the latter syntax, you can easily scope the
-code completion menu to members of \ic{object} because you write the object
-first, whereas in the former case the code completion for the member has to show
-all members of all objects in the system because the context of object is
+parts of things or performing activities on things is ubiquitous. For many SMEs,
+this is harder to get used to. We've experimented with literally writing
+\ic{<member> of <object>} instead of \ic{<object>.<member>} but this results in
+less useful IDE support: with the latter syntax, one can easily scope the code
+completion menu to members of \ic{object} because users write the object first.
+In contrast, with the former syntax, the code completion for the member has to
+show all members of all objects in the system because the context \ic{object} is
 not yet specified.
 
-In essentially every domain one has to make decisions and perform calculations.
+In essentially every domain SMEs have to express decisions and calculations.
 So another set of constructs that is hard to avoid is arithmetic, logcial and
-and comparison operators (together with types like number or Boolean), again
-independent of their concrete syntax (text, symbol or graphical). Again,
-luckily, many SMEs have come across functions at school or university, so using
-them is not a big challenge. The same is true for the notion of a conditional,
-such as \ic{if \ldots then} or \ic{switch\{case, case, case\}}.
+and comparison operators (together with types like \ic{number} or \ic{Boolean}), 
+as well as notion of a conditional,
+such as \ic{if \ldots then} or \ic{switch\{case, case, case\}} -- 
+independent of their concrete syntax (text, symbolic or graphical). Once
+again, most SMEs have come across these operators at school or university, so using
+them is not a big challenge. 
 
 The reason why these two lines are grey for SMEs and not totally black is
 because the complexity of the expressions built with these language concepts
@@ -436,14 +453,14 @@ decisions, we can support graphical decision tables of various forms which are
 much easier to grasp than nested \ic{if} statements or the equivalent of \ic{switch}
 statements. 
 
-Several of the DSLs I have built require an understanding of the notion of
+Several of the DSLs I have built require an understanding of 
 parametrization. For example, in function-like constructs, the values passed
-into the function are mapped (by position or by name) to formal arguments in the
+into the function are mapped (by position or by name) to parameters in the
 function signature that are then used in the body of the function. Most
-SMEs have no problems with this -- again, school experience -- but some do. In
-my experience this is the threshold where the need for education and training
+SMEs have no problems with this -- again, school experience -- but some do. 
+Often parametrization is the threshold where the need for education and training
 starts (beyond building the shared understanding about the core concepts of a
-domain). A related concept is the notion of instantiation, where, usually, the
+domain). A related concept is instantiation, where, usually, each
 instance has independent values for its state and its evolution. This is not
 taught in school, and it's not taught outside of computer science at university,
 so training is needed. On the other hand, many DSLs can do without instantiation
@@ -452,7 +469,7 @@ which is why this box is a lighter shade of gray.
 We're getting to more advanced concepts that are increasingly harder to grasp
 for many SMEs, but they are also not necessary in all DSLs (though unavoidable
 in some domains). The notion of specialization or subtyping is key here. While
-everybody understand subtyping intuitively (``an eagle \emph{isa} bird
+everybody understands subtyping intuitively (``an eagle \emph{isa} bird
 \emph{isa} animal \emph{isa} living thing \emph{isa} object''), many SMEs
 struggle with the consequences. Especially the mental assembly of everything
 that's in a subtype by (mentally) going through all its supertypes is hard:
@@ -460,30 +477,30 @@ that's in a subtype by (mentally) going through all its supertypes is hard:
 so can tools that optionally show all the inherited members inline in the
 subtype's definition.
 
-For complex subject matter -- the tax stuff comes to mind -- the models created
-with the DSLs become larger, and complexity often rises along with the size.
+For complex subject matter -- tax calculation comes to mind -- the models
+created with the DSLs become large, and complexity often rises along with size.
 Notions like delineating module boundaries, explicitly defined interfaces,
 reduction of unnecessary dependencies, and more generally, cohesion and coupling
 become an issue. Most SMEs struggle here. But on the other hand, 95\% of the
-work of an SME can proceed without caring about these things, except during
-initial design or downstream review phases, where SD or guru involvement is
-often needed so sort these things out.
+work of an SME can proceed without caring about these big picture concerns,
+except during initial design or downstream review phases, where SD or guru
+involvement is often needed so sort these things out. Considering it is only
+5\% of the total work, this involvement is usually feasible.
 
 The final ingredient in region 4 is discovering and then defining new
-abstractions. This is usually not the strong suit of SMEs. Those that are good
-at it are usually the gurus we talked about before, or they have been
+abstractions. This is often not the strong suit of SMEs. Those that are good
+at it are usually the gurus who help with language definition, or they have been
 assimilated wholly but the software development team. But luckily it is quite
 rare that SMEs are required to define new abstractions, because those that are
 relevant in the domain should be available first-class in the DSL -- or
-retrofitted for the next version once the need becomes obvious with the help
-of SDs.
+retrofitted for the next version once the need becomes obvious.
  
 
 
 \subsection{Different Emphasis}
 
 In my experience, (most) SMEs prioritize the features of languages and IDEs
-differently from (most) developers. In this section we'll look at some of the
+different from (most) developers. In this section we'll look at some of the
 more prominenet differences, \fig{table-prefs} summarizes them.
 
 \begin{figure}[t]
@@ -497,27 +514,27 @@ more prominenet differences, \fig{table-prefs} summarizes them.
 
 \parhead{Notation} Developers prefer textual notations, both for their
 conciseness, but also for reasons of homogeneity with regards to storing,
-editing, diffing and merging programs. SMEs, in contrast, tend to emphasize
+editing, diffing and merging code. SMEs, in contrast, tend to emphasize
 readability and fit of the notation with established representations in the
 domain (e.g., tables in the tax law documents) over these efficiency concerns.
 Therefore, if you can build DSLs that are more diverse in notation -- and not
 just colored text with curly braces and indentation -- SME buy-in is usually
-easier to get.
+easier to obtain.
 
 \parhead{Selecting vs. Creating} Developers love the creative freedom of coming
 up with an algorithm and crafting their own suitable abstractions from small,
 flexible building blocks. SMEs -- including because of their often limited
 experience with building their own abstractions -- prefer picking from options
 and selecting alternatives.
-In my experience they accept if they have to read a bit more documentation that
+In my experience SMEs usually accept that they have to read a bit more documentation that
 (hopefully!) explains what the different options or alternatives mean.
 So DSLs often rely on first-class concepts for the various needs of the domain,
 even if this requires the users to first understand what each of them means.
 The approach is usually also benefitial for domain-related semantic analysis
-(more first class content makes it easier to analyze programs) and it's easier
+(more first class concepts makes it easier to analyze programs) and it is easier
 to have a nice notation (because you can associate specific notations with these
 first-class concepts). In contrast, programming languages emphasize
-orthogonality and flexibility of their first-class concepts.
+orthogonality and composability of their (fewer) first-class concepts.
 
 \parhead{Guidance} A related topic is guidance. Developers are happy with
 opening an empty editor and starting to write code. Code completion guides
@@ -527,51 +544,54 @@ like a mix between a form-based application and program code seem to be
 particularly appreciated by many SMEs. 
 
 \parhead{Tool Support} Taking this further, SDs prefer a toolbox approach, where
-the tool provides 5 million different actions to do things. It's the
+the tool offers lots and lots of actions and it is the
 developer's job to use each action at the right time, in the right way.
 SMEs are more use-case oriented. They want tool support for their typical
-process steps, and specific tool support for each. We have built DSLs that
+workflows and process steps, and specific tool support for each. We have built DSLs that
 included wizard-like functionality in the IDE where using the wizard required
 more input gestures than just code-completion supported typing. Still the wizard
 was preferred by the SMEs.
  
-\parhead{Thinking about problems} It's almost a defining feature of programmers
+\parhead{Thinking about problems} It is almost a defining feature of programmers
 that they think about a problem (and its solution) as a complete algorithm that
 can cover all possible execution paths. Sure, tests then validate specific
 scenarios, but developers \emph{think} in algorithms. SMEs often think in terms
 of examples first, and sometimes exclusively. For example, it is easier for them
 to deal with a (hopefully complete) set of sequence diagrams rather than with a
-state machine. In terms of DSL design this means that more emphasis on case
-distinction where the various scenarios can be specified separately (even if
-this incurs a degree of code duplication) is often a good idea. 
+state machine that captures the superset of the sequence diagrams. In terms of
+DSL design this means that more emphasis on case distinction in which
+separate scenarios are specified separately (even if this incurs a degree of code
+duplication) is often a good idea.
 
 \parhead{Validation} Most developers are good at writing tests, writing
-them against APIs on a relatively small-size unit, and then running these
-tests automatically all the time. SMEs often think of validation more in
+them against APIs for a relatively small-size unit, and then running these
+tests automatically continuously. SMEs often think of validation more in
 terms of ``playing with the system''. They prefer ``simulation GUIs'' over
 writing repeatable tests as (a different kind of) program. So build those
 simulators first, and then allow the simulator to record ``play sessions''
 and persist them as generated test cases for downstream reexecution.
 
-\parhead{Recipe vs. Execution} A program is a recipe which, when combined
-with input data, behaves in a particular way. That behavior depends on the
+\parhead{Recipe vs. Execution} A program is a recipe which, when combined with
+input data, behaves in a particular way. The specific behavior depends on the
 input data. So whenever SDs write code, they continuously imagine (and sometimes
 try out or trace with the debugger) how the program behaves for (all possible
-combinations of) input data. Many SMEs are not very good at doing
-this. One reason why Excel is so popular is because it does not make this
-distinction between program and data: the program always runs (or, alternatively,
-a spreadsheet never runs, it just ``is''). So anything from the universe of
-live programming is helpful for DSLs.
+combinations of) input data. Many SMEs are not very good at doing this. One
+reason why Excel is so popular is because it does not make this distinction
+between the program and its execution: the program always runs (or,
+alternatively, a spreadsheet never runs, it just ``is''). So anything from the
+universe of live programming is helpful for DSLs.
 
 \vspace{3mm}
 \noindent Despite these differences, there are lots of commonalities as well.
 Both communities want good tools (read: IDE support), relevant analyses with
 understandable and precise error messages, refactorings and other ways to make
-non-local changes to (potentially large) programs, low turnaround time plus
+non-local changes to potentially large programs, low turnaround time plus
 various ways of illustrating, tracing and debugging the execution of programs.  
 However, while software engineers are often willing to compromise on these
 features if the expressivity of the language is convincing, SMEs usually will 
 not.
+
+
 
 \section{Where and how can SMEs learn}
 
@@ -586,30 +606,30 @@ emphasize the specific skills of ``thinking like a programmer'' with a range of
 dedicated and diverse languages and tools.
 
 \parhead{Programming Basics Course} A few years ago, based on the need to
-educate and trains some SMEs, I created a course called Programming
-Basics~\cite{voelterProgBas} that teaches these basics step by step. It starts
-with simple values as cells of spreadsheets and then covers expressions,
-testing, types, functions, structured values, collections, decisions and
-calculations as well as instantiation. The course uses different varieties and
-notations for many of these things to try and emphasize the conceptual aspects.
-It is built on MPS and KernelF, and allows extension and customization on
-language level towards particular DSLs. We are working on a way to get this into
-the browser for easier access.
+educate and trains a group of SMEs, I created a course called Programming
+Basics~\cite{voelterProgBas} that teaches these concepts relevant to SMEs step
+by step. It starts with simple values as cells of spreadsheets and then covers
+expressions, testing, types, functions, structured values, collections,
+decisions and calculations as well as instantiation. The course uses different
+varieties and notations for many of these concepts in order to try and emphasize
+the concepts. The course is built on MPS and KernelF, and allows extension and
+customization on language level towards particular DSLs. We are working on a way
+to get this into the browser for easier access.
 
 
 \parhead{Hedy Language} Felienne Hermans has built Hedy~\cite{hedy}, a gradual
 programming language. The goal is to teach ``normal people'' the basics of
 programming with a language that grows in capability step by step, with the need
 for each next capability motivated by user-understandable limitation in the
-previous step. Ultimately, the full stage of Hedy is Python. Hedy is free and
-works in the browser.
+previous step. Ultimately, when Hedy is fully developed, it is similar to
+Python. Hedy is free and works in the browser.
 
 
 \parhead{Computational Thinking} In the 2000s, a community of software engineers
 came up with the term compuational thinking~\cite{denning2019computational} as
 the ``mental skills and practices for designing computations that get computers
 to do jobs for people, and explaining and interpreting the world as a complex of
-information processes.'' So the idea is kinda similar to what I am advocating,
+information processes.'' So the idea is similar to what I am advocating,
 although the relationship to DSLs and subject matter is missing. Computational
 thinking has been critizised as being just another name for computer science; but
 my discussions in this paper should make clear that there's a big difference
@@ -619,14 +639,14 @@ between computer science and that thing SMEs should do.
 \label{wrapUp}
 
 It is almost not worth saying because it is obvious: almost all domains,
-disciplines, professions and sciences are becoming computational to an 
-increasing degree. And market forces require companies -- especially those
-in the traditional industrial countries -- to become more efficient. I
-am confident that providing ``CAD programs for knowledge workers'', i.e.,
-DSL, tools and automation, is an important building block for future success.
+disciplines, professions and sciences are becoming increasingly computational.
+And market forces require companies -- especially those in the traditional
+industrial countries -- to become more efficient. I am confident that providing
+``CAD programs for knowledge workers'', i.e., DSL, tools and automation, is an
+important building block for future economic success.
 
 With the comparison of programming and ``that thing SMEs should do'' in this
-paper I hope to have made clear that everybody \emph{doesn't} have to become a
+paper I hope to make clear that everybody \emph{doesn't} have to become a
 programmer.
 But: everybody has to be empowered to communicate the subject matter of their
 domain precisely to a computer (using DSLs or other suitable tools). And
